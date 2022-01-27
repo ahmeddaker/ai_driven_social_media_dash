@@ -11,16 +11,8 @@ import argparse
 import random
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("length", type=int, default=-1,
-                    help="length of array will generate")
-
-args = parser.parse_args()
-lengthOfJson = args.length
-
-
 with open("./tweets.json", 'r', encoding='UTF-8') as f:
-    data = json.load(f)[0:lengthOfJson]
+    data = json.load(f)
 
     steps = 5
     startIndex, endIndex = 0, 0+steps
