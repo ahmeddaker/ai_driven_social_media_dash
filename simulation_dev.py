@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 23 20:57:41 2022
-@author: Memen
-"""
-
 
 import json
 import time
