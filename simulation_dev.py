@@ -9,40 +9,33 @@ import json
 import time
 import argparse
 import random
+import uuid
 
+with open("../tweets.json", 'r', encoding='UTF-8') as f:
+    data = json.load(f)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("length", type=int, default=-1,
-                    help="length of array will generate")
-
-args = parser.parse_args()
-lengthOfJson = args.length
-
-
-with open("./tweets.json", 'r', encoding='UTF-8') as f:
-    data = json.load(f)[0:lengthOfJson]
-
-    steps = 5
+    steps = 20
     startIndex, endIndex = 0, 0+steps
     print(type(data))
     print(len(data))
 
     # keys= list(data.keys())
+
     try:
         while(data[startIndex] != None):
             print("********************")
             pre = random.randint(0, len(data))
-            with open("/var/log/tweet/test-{}.json".format(pre), 'w') as o:
+            with open("./test-{}.json".format(pre), 'w') as o:
+
                 for item in list(data[startIndex:endIndex]):
+                    item["uuid"] = str(uuid.uuid4())
                     o.write(json.dumps(item)+'\n')
                     print(item)
                 o.close()
             print("********************")
             startIndex = endIndex
             endIndex = startIndex+steps
-            time.sleep(1)
+            time.sleep(40)
     except Exception as e:
         print(e)
         f.close()
-
-    # print(data)
